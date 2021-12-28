@@ -9,6 +9,8 @@ subprojects {
         minecraft {
             runs {
                 client {
+                    ideaModule "SlimmyMods.mods.${project.name}.main"
+
                     workingDirectory file('../run')
                     property 'forge.logging.markers', 'REGISTRIES'
                     property 'forge.logging.console.level', 'debug'
@@ -21,6 +23,8 @@ subprojects {
                 }
 
                 server {
+                    ideaModule "SlimmyMods.mods.${project.name}.main"
+
                     workingDirectory file('../run')
                     property 'forge.logging.markers', 'REGISTRIES'
                     property 'forge.logging.console.level', 'debug'
@@ -33,6 +37,8 @@ subprojects {
                 }
 
                 data {
+                    ideaModule "SlimmyMods.mods.${project.name}.main"
+
                     workingDirectory file('../run')
                     property 'forge.logging.markers', 'REGISTRIES'
                     property 'forge.logging.console.level', 'debug'
