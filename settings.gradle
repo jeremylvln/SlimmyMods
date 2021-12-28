@@ -1,3 +1,4 @@
 rootProject.name = 'SlimmyMods'
 
+apply from: 'libs/settings.gradle'
 apply from: 'mods/settings.gradle'
