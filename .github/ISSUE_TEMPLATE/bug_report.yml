@@ -54,7 +54,7 @@ body:
     attributes:
       label: Relevant log output
       description: |
-        Please copy and paste any relevant log output. If needed, please attach the full log file after submitting this form.
+        Please copy and paste any relevant log output. Do not hesitate to attach the full log file directly.
     validations:
       required: true
 
