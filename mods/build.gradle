@@ -1,72 +1,131 @@
-subprojects {
-    ext {
-        modid = 'unknown'
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+        mavenCentral()
     }
+
+    dependencies {
+        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.+'
+        classpath "org.ajoberstar.grgit:grgit-gradle:4.1.+"
+    }
+}
+
+subprojects {
+    apply plugin: 'com.matthewprenger.cursegradle'
+    apply plugin: 'org.ajoberstar.grgit'
+
+    version mod_version
 
     sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-    afterEvaluate {
-        minecraft {
-            runs {
-                client {
-                    ideaModule "SlimmyMods.mods.${project.name}.main"
+    minecraft {
+        runs {
+            client {
+                workingDirectory file('../../run')
+                property 'forge.logging.markers', 'REGISTRIES'
+                property 'forge.logging.console.level', 'debug'
 
-                    workingDirectory file('../run')
-                    property 'forge.logging.markers', 'REGISTRIES'
-                    property 'forge.logging.console.level', 'debug'
+                ideaModule "SlimmyMods.mods.${project.name}.main"
 
-                    mods {
-                        "${modid}" {
-                            source sourceSets.main
-                        }
+                mods {
+                    "${project.name}" {
+                        source sourceSets.main
                     }
                 }
+            }
 
-                server {
-                    ideaModule "SlimmyMods.mods.${project.name}.main"
+            server {
+                workingDirectory file('../../run')
+                property 'forge.logging.markers', 'REGISTRIES'
+                property 'forge.logging.console.level', 'debug'
 
-                    workingDirectory file('../run')
-                    property 'forge.logging.markers', 'REGISTRIES'
-                    property 'forge.logging.console.level', 'debug'
+                ideaModule "SlimmyMods.mods.${project.name}.main"
 
-                    mods {
-                        "${modid}" {
-                            source sourceSets.main
-                        }
+                mods {
+                    "${project.name}" {
+                        source sourceSets.main
                     }
                 }
+            }
 
-                data {
-                    ideaModule "SlimmyMods.mods.${project.name}.main"
+            data {
+                workingDirectory file('../../run')
+                property 'forge.logging.markers', 'REGISTRIES'
+                property 'forge.logging.console.level', 'debug'
+                args '--mod', project.name, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
-                    workingDirectory file('../run')
-                    property 'forge.logging.markers', 'REGISTRIES'
-                    property 'forge.logging.console.level', 'debug'
-                    args '--mod', modid, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+                ideaModule "SlimmyMods.mods.${project.name}.main"
 
-                    mods {
-                        "${modid}" {
-                            source sourceSets.main
-                        }
+                mods {
+                    "${project.name}" {
+                        source sourceSets.main
                     }
                 }
             }
         }
+    }
 
-        jar {
-            manifest {
-                attributes([
-                        "Specification-Title": modid,
-                        "Specification-Vendor": "IamBlueSlime",
-                        "Specification-Version": "1",
-                        "Implementation-Title": project.name,
-                        "Implementation-Version": project.jar.archiveVersion,
-                        "Implementation-Vendor": "IamBlueSlime",
-                        "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-                ])
+    tasks.curseforge.dependsOn jar
+
+    /**
+     * Taken from Mekanism's Gradle build file. It is pretty.
+     * A bit tweaked.
+     */
+    def resolvedChangelog = null
+    def generateChangelog = { ->
+        if (resolvedChangelog != null) {
+            return resolvedChangelog
+        }
+
+        def currentCommit = System.getenv("GIT_COMMIT")
+        def prevCommit = System.getenv("GIT_PREVIOUS_SUCCESSFUL_COMMIT") ?: System.getenv("GIT_PREVIOUS_COMMIT")
+
+        if (currentCommit == null || prevCommit == null) {
+            throw new GradleException("Failed to generate changelog")
+        }
+
+        def generatedChangelog = ""
+
+        grgit.log {
+            range(prevCommit, currentCommit)
+        }.reverse().each { commit ->
+            String message = commit.fullMessage.trim()
+            if (!message.startsWith("Merge branch") && !message.startsWith("Merge pull request")) {
+                // Ignore Merges and PR Merges
+                message = message.replaceAll("#(\\d+)", { match -> // Turn issues/prs into links (github currently supports prs being linked as issues)
+                    return "<a href=\"https://github.com/IamBlueSlime/SlimmyMods/issues/${match[1]}\">${match[0]}</a>"
+                }).replaceAll("\\n", "<br>&emsp;") // Convert new lines that are part of a commit message into actual new lines and a tab
+                if (generatedChangelog != "") {
+                    // If this isn't the first commit prepend an extra newline
+                    generatedChangelog += "<br>"
+                }
+                generatedChangelog += "<a href=\"https://github.com/IamBlueSlime/SlimmyMods/commit/${commit.id}\">${commit.getAbbreviatedId()}</a> - ${message}"
             }
         }
 
-        jar.finalizedBy('reobfJar')
+        println "Generated changelog"
+        resolvedChangelog = generatedChangelog
+        return generatedChangelog
+    }
+
+    task changelog() {
+        println generateChangelog()
+    }
+
+    if (System.getenv("CURSEFORGE_KEY") != null || project.hasProperty('curseforgeKey')) {
+        println "Enabling Curseforge integration"
+
+        curseforge {
+            apiKey = System.getenv("CURSEFORGE_KEY") ?: project.findProperty("curseforgeKey")
+
+            project {
+                id = curse_project_id
+                changelogType = "html"
+                changelog = generateChangelog
+                releaseType = curse_release_type
+                mainArtifact(jar) {}
+                addGameVersion minecraft_version
+            }
+        }
     }
 }

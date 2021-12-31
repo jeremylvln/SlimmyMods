@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[39,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/IamBlueSlime/SlimmyMods/issues"
+
+[[mods]]
+modId="keepmykeys"
+version="${file.jarVersion}"
+displayName="KeepMyKeys"
+# updateJSONURL="https://change.me.example.invalid/updates.json"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/keep-my-keys"
+# logoFile="examplemod.png"
+# credits="Thanks for this example mod goes to Java"
+authors="IamBlueSlime"
+description='''
+Import your controls from another Minecraft setup, ending the pain
+to reconfigure your keys every time you test a new modpack.
+'''
+
+[[dependencies.keepmykeys]]
+    modId="forge"
+    mandatory=true
+    versionRange="[39,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.keepmykeys]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.1,1.19)"
+    ordering="NONE"
+    side="BOTH"

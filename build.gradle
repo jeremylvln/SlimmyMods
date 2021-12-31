@@ -1,13 +1,13 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
-        // maven { url = 'https://maven.parchmentmc.org' }
+        maven { url = 'https://maven.parchmentmc.org' }
         mavenCentral()
     }
 
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        // classpath 'org.parchmentmc:librarian:1.+'
+        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 
@@ -15,10 +15,10 @@ configure(subprojects.findAll {
     !['libs', 'mods'].contains(it.name)
 }) {
     apply plugin: 'net.minecraftforge.gradle'
-    // apply plugin: 'org.parchmentmc.librarian.forgegradle'
+    apply plugin: 'org.parchmentmc.librarian.forgegradle'
     apply plugin: 'java'
     apply plugin: 'idea'
-    // apply plugin: 'maven-publish'
+    apply plugin: 'maven-publish'
 
     group "fr.iamblueslime.slimmymods"
     archivesBaseName = it.name
@@ -26,25 +26,41 @@ configure(subprojects.findAll {
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
     repositories {
-        // maven { url "https://dvs1.progwml6.com/files/maven" }
-        // maven { url "https://cursemaven.com" }
+        maven { url "https://dvs1.progwml6.com/files/maven" }
+        maven { url "https://cursemaven.com" }
     }
 
     dependencies {
         minecraft "net.minecraftforge:forge:${forge_version}"
 
-        // compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
-        // implementation fg.deobf("mezz.jei:jei-${jei_version}")
+        compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+        implementation fg.deobf("mezz.jei:jei-${jei_version}")
 
-        // implementation fg.deobf("curse.maven:the-one-probe-245211:3550084")
+        implementation fg.deobf("curse.maven:the-one-probe-245211:3550084")
     }
 
     minecraft {
-        mappings channel: 'official', version: '1.18.1'
-        // mappings channel: 'parchment', version: parchment_version
+        mappings channel: 'parchment', version: parchment_version
     }
 
-    /*publishing {
+    jar {
+        manifest.attributes(getManifestAttributes(project.name, project.version.toString()))
+    }
+
+    jar.finalizedBy('reobfJar')
+
+    task sourcesJar(type: Jar, dependsOn: [classes]) {
+        from sourceSets.main.allJava
+        archiveClassifier.set("sources")
+        manifest.attributes(getManifestAttributes(project.name, project.version.toString()))
+    }
+
+    artifacts {
+        archives jar
+        archives sourcesJar
+    }
+
+    publishing {
         publications {
             mavenJava(MavenPublication) {
                 artifact jar
@@ -56,5 +72,17 @@ configure(subprojects.findAll {
                 url "file://${project.projectDir}/mcmodsrepo"
             }
         }
-    }*/
+    }
+}
+
+static def getManifestAttributes(String projectName, String projectVersion) {
+    return [
+            "Specification-Title": projectName,
+            "Specification-Vendor": "IamBlueSlime",
+            "Specification-Version": "1",
+            "Implementation-Title": projectName,
+            "Implementation-Version": projectVersion,
+            "Implementation-Vendor": "IamBlueSlime",
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    ]
 }
