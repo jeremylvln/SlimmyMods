@@ -1,0 +1,47 @@
+name: Feature Request
+description: This is something we may need.
+labels:
+  - 'type:feature :rocket:'
+  - 'flag:triage :mailbox:'
+body:
+  - type: markdown
+    attributes:
+      value: Thank for taking the time to fill out this feature request!
+
+  - type: dropdown
+    id: mod
+    attributes:
+      label: What mod(s) is concerned by this feature request?
+      multiple: true
+      options:
+        - Keep My Keys
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Feature context
+      description: Is your feature request related to a problem? Please describe.
+      placeholder: I think the [xx] mod lack of support for [...]
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution you'd like
+      description: |
+        Describe the solution you'd like. Do not hesitate to add a lot details if you think they're needed.
+      placeholder: I think the craft for [xx] should [...]
+    validations:
+      required: true
+
+  - type: checkboxes
+    attributes:
+      label: Code of Conduct
+      description: |
+        By submitting this feature request, you agree to follow our [Code of Conduct]() (To be defined).
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

@@ -64,7 +64,7 @@ body:
       description: |
         By submitting this issue, you agree to follow our [Code of Conduct]() (To be defined).
       options:
-        # - label: I agree to follow this project's Code of Conduct
-        #   required: true
+        - label: I agree to follow this project's Code of Conduct
+          required: true
         - label: I have searched the existing issues
           required: true
