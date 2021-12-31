@@ -55,10 +55,7 @@ configure(subprojects.findAll {
         manifest.attributes(getManifestAttributes(project.name, project.version.toString()))
     }
 
-    artifacts {
-        archives jar
-        archives sourcesJar
-    }
+    jar.finalizedBy(sourcesJar)
 
     publishing {
         publications {

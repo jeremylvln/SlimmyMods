@@ -15,6 +15,7 @@ subprojects {
     apply plugin: 'org.ajoberstar.grgit'
 
     version mod_version
+    archivesBaseName = archive_base_name
 
     sourceSets.main.resources { srcDir 'src/generated/resources' }
 
@@ -111,7 +112,9 @@ subprojects {
     }
 
     task changelog() {
-        println generateChangelog()
+        doLast {
+            println generateChangelog()
+        }
     }
 
     if (System.getenv("CURSEFORGE_KEY") != null || project.hasProperty('curseforgeKey')) {
@@ -125,8 +128,9 @@ subprojects {
                 changelogType = "html"
                 changelog = generateChangelog
                 releaseType = curse_release_type
-                mainArtifact(jar) {}
                 addGameVersion minecraft_version
+
+                mainArtifact(jar) {}
             }
         }
     }
