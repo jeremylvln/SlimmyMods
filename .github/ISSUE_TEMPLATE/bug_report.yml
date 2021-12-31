@@ -23,8 +23,7 @@ body:
     attributes:
       label: What happened?
       description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
+      placeholder: A bug happened!
     validations:
       required: true
 
@@ -34,7 +33,7 @@ body:
       label: Minecraft version
       description: What version of Minecraft are you running?
       options:
-        - 1.18.1 (Latest)
+        - 1.18.1 (latest)
     validations:
       required: true
 
@@ -45,8 +44,7 @@ body:
       description: |
         What version of the mods are you running?
         
-        If multiple mods are affected, add all the mods versions
-        with the mod name (saying "latest" is not valid).
+        If multiple mods are affected, add all the mods versions with the mod name (saying "latest" is not valid).
       placeholder: ex. 1.0.0
     validations:
       required: false
@@ -56,8 +54,7 @@ body:
     attributes:
       label: Relevant log output
       description: |
-        Please copy and paste any relevant log output. If needed,
-        please attach the full log file after submitting this form.
+        Please copy and paste any relevant log output. If needed, please attach the full log file after submitting this form.
     validations:
       required: true
 
@@ -65,8 +62,7 @@ body:
     attributes:
       label: Code of Conduct
       description: |
-        By submitting this issue, you agree to follow our
-        [Code of Conduct]() (To be defined).
+        By submitting this issue, you agree to follow our [Code of Conduct]() (To be defined).
       options:
         # - label: I agree to follow this project's Code of Conduct
         #   required: true
