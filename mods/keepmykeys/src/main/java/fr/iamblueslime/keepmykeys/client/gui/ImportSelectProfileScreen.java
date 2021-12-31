@@ -9,13 +9,11 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.util.FormattedCharSequence;
 
 import java.util.List;
 
 public class ImportSelectProfileScreen extends OptionsSubScreen {
     public static final TranslatableComponent TITLE_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.title");
-    public static final TranslatableComponent APPLY_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.apply");
 
     private ControlProfileSelectionList list;
     private Button applyButton;
@@ -29,7 +27,7 @@ public class ImportSelectProfileScreen extends OptionsSubScreen {
     protected void init() {
         this.list = new ControlProfileSelectionList(this, this.minecraft, this.width, this.height, 32, this.height - 36);
         this.addWidget(this.list);
-        this.applyButton = this.addRenderableWidget(new Button(this.width / 2 + 4, this.height - 28, 150, 20, APPLY_MESSAGE, (button) -> {
+        this.applyButton = this.addRenderableWidget(new Button(this.width / 2 + 4, this.height - 28, 150, 20, CommonComponents.GUI_PROCEED, (button) -> {
             ControlProfileRegistry.INSTANCE.applyKeyBindMap(this.list.getKeyBindMap());
             this.minecraft.setScreen(this.lastScreen);
         }));
