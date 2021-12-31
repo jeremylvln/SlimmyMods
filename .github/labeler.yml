@@ -1,0 +1,4 @@
+'comp:keepmykeys :key:':
+  - '(?i)Keep My Keys'
+'comp:ledmc :low_brightness:':
+  - '(?i)LedMC'
