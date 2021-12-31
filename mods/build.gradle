@@ -95,10 +95,12 @@ subprojects {
                 message = message.replaceAll("#(\\d+)", { match -> // Turn issues/prs into links (github currently supports prs being linked as issues)
                     return "<a href=\"https://github.com/IamBlueSlime/SlimmyMods/issues/${match[1]}\">${match[0]}</a>"
                 }).replaceAll("\\n", "<br>&emsp;") // Convert new lines that are part of a commit message into actual new lines and a tab
+
                 if (generatedChangelog != "") {
                     // If this isn't the first commit prepend an extra newline
                     generatedChangelog += "<br>"
                 }
+
                 generatedChangelog += "<a href=\"https://github.com/IamBlueSlime/SlimmyMods/commit/${commit.id}\">${commit.getAbbreviatedId()}</a> - ${message}"
             }
         }
