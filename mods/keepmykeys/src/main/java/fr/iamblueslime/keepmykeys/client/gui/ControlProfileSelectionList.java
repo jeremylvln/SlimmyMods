@@ -28,6 +28,8 @@ import java.util.List;
 
 public class ControlProfileSelectionList extends ContainerObjectSelectionList<ControlProfileSelectionList.Entry> {
     public static final TranslatableComponent NO_PROFILE_FOUND_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.list.empty");
+    public static final TranslatableComponent PROFILES_TO_APPLY_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.list.profiles_to_apply");
+    public static final TranslatableComponent IGNORED_PROFILES_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.list.ignored_profiles");
     public static final String MATCHING_KEYS_MESSAGE_KEY = "options.keepmykeys.importselectprofile.list.matchingkeys";
     public static final String PROFILE_LAST_MODIFIED_ON_MESSAGE_KEY = "options.keepmykeys.importselectprofile.list.last_modified_on";
     public static final String PROFILE_FILE_PATH_MESSAGE_KEY = "options.keepmykeys.importselectprofile.list.file_path";
@@ -63,14 +65,14 @@ public class ControlProfileSelectionList extends ContainerObjectSelectionList<Co
         this.ignoredControlProfiles.addAll(ignoredControlProfiles);
         this.controlProfiles.removeAll(ignoredControlProfiles);
 
-        this.addEntry(new CategoryEntry(new TextComponent("Profiles to apply")));
+        this.addEntry(new CategoryEntry(PROFILES_TO_APPLY_MESSAGE));
         this.controlProfiles.forEach((controlProfile) -> this.addEntry(new ProfileEntry(
                 controlProfile,
                 new ControlProfile.Stats(this.keyBindMap.getMatchingKeysForProfile(controlProfile))
         )));
 
         if (!this.ignoredControlProfiles.isEmpty()) {
-            this.addEntry(new CategoryEntry(new TextComponent("Ignored profiles")));
+            this.addEntry(new CategoryEntry(IGNORED_PROFILES_MESSAGE));
             this.ignoredControlProfiles.forEach((controlProfile) -> this.addEntry(new ProfileEntry(controlProfile, null)));
         }
 
