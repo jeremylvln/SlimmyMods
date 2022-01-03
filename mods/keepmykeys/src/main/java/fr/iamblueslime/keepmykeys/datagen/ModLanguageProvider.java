@@ -20,7 +20,6 @@ public class ModLanguageProvider extends LanguageProvider {
         add(ControlProfileSelectionList.NO_PROFILE_FOUND_MESSAGE.getKey(), "No profile found :(");
         add(ControlProfileSelectionList.PROFILES_TO_APPLY_MESSAGE.getKey(), "Profiles to apply");
         add(ControlProfileSelectionList.IGNORED_PROFILES_MESSAGE.getKey(), "Ignored profiles");
-        add(ControlProfileSelectionList.PROFILE_IGNORED_MESSAGE.getKey(), "Ignored");
         add(ControlProfileSelectionList.MATCHING_KEYS_MESSAGE_KEY, "%s usable keys");
         add(ControlProfileSelectionList.PROFILE_LAST_MODIFIED_ON_MESSAGE_KEY, "Last modified on: %s");
         add(ControlProfileSelectionList.PROFILE_FILE_PATH_MESSAGE_KEY, "File path: %s");

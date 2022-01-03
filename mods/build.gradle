@@ -15,7 +15,7 @@ subprojects {
     apply plugin: 'org.ajoberstar.grgit'
 
     version mod_version
-    archivesBaseName = archive_base_name
+    archivesBaseName = "${archive_base_name}-${minecraft_version}"
 
     sourceSets.main.resources { srcDir 'src/generated/resources' }
 

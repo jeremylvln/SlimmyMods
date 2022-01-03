@@ -21,7 +21,6 @@ configure(subprojects.findAll {
     apply plugin: 'maven-publish'
 
     group "fr.iamblueslime.slimmymods"
-    archivesBaseName = it.name
 
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 

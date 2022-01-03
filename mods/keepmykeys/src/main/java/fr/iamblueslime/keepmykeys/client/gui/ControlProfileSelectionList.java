@@ -28,7 +28,6 @@ public class ControlProfileSelectionList extends ContainerObjectSelectionList<Co
     public static final TranslatableComponent NO_PROFILE_FOUND_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.list.empty");
     public static final TranslatableComponent PROFILES_TO_APPLY_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.list.profiles_to_apply");
     public static final TranslatableComponent IGNORED_PROFILES_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.list.ignored_profiles");
-    public static final TranslatableComponent PROFILE_IGNORED_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.list.ignored");
     public static final String MATCHING_KEYS_MESSAGE_KEY = "options.keepmykeys.importselectprofile.list.matchingkeys";
     public static final String PROFILE_LAST_MODIFIED_ON_MESSAGE_KEY = "options.keepmykeys.importselectprofile.list.last_modified_on";
     public static final String PROFILE_FILE_PATH_MESSAGE_KEY = "options.keepmykeys.importselectprofile.list.file_path";
@@ -139,8 +138,8 @@ public class ControlProfileSelectionList extends ContainerObjectSelectionList<Co
         public ProfileEntry(ControlProfile controlProfile, ControlProfile.Stats controlProfileStats) {
             this.controlProfile = controlProfile;
             this.ignored = controlProfileStats == null;
-            this.matchingKeysMessage = this.ignored ? PROFILE_IGNORED_MESSAGE : new TranslatableComponent(MATCHING_KEYS_MESSAGE_KEY,
-                    controlProfileStats.matchingKeyBinds());
+            this.matchingKeysMessage = new TranslatableComponent(MATCHING_KEYS_MESSAGE_KEY,
+                    !this.ignored ? controlProfileStats.matchingKeyBinds() : 0);
         }
 
         @Override
