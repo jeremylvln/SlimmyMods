@@ -3,7 +3,6 @@
   "options.keepmykeys.import.vanilla": "Importer l'assignation des touches depuis Vanilla...",
   "options.keepmykeys.importselectprofile.list.empty": "Aucun profil trouvé :(",
   "options.keepmykeys.importselectprofile.list.file_path": "Chemin vers le fichier : %s",
-  "options.keepmykeys.importselectprofile.list.ignored": "Ignored",
   "options.keepmykeys.importselectprofile.list.ignored_profiles": "Profiles ignorés",
   "options.keepmykeys.importselectprofile.list.last_modified_on": "Dernières modifications le : %s",
   "options.keepmykeys.importselectprofile.list.matchingkeys": "%s touches utilisables",
