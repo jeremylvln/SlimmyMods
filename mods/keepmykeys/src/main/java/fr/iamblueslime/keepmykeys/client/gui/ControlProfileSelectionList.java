@@ -154,7 +154,7 @@ public class ControlProfileSelectionList extends ContainerObjectSelectionList<Co
             GuiComponent.blit(pPoseStack, pLeft, pTop, !this.ignored ? 0 : 16, 0, 16, 16, 128, 128);
             RenderSystem.disableBlend();
 
-            if (pMouseX <= 16) {
+            if (pIsMouseOver && pMouseX <= pLeft + 16) {
                 ControlProfileSelectionList.this.screen.setToolTip(Arrays.asList(
                         new TranslatableComponent(PROFILE_LAST_MODIFIED_ON_MESSAGE_KEY, DATE_FORMAT.format(new Date(this.controlProfile.file().lastModified()))),
                         new TranslatableComponent(PROFILE_FILE_PATH_MESSAGE_KEY, this.controlProfile.file().getAbsolutePath())
