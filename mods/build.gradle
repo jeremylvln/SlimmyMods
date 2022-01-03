@@ -122,8 +122,6 @@ subprojects {
     }
 
     if (System.getenv("CURSEFORGE_KEY") != null || project.hasProperty('curseforgeKey')) {
-        println "Enabling Curseforge integration"
-
         curseforge {
             apiKey = System.getenv("CURSEFORGE_KEY") ?: project.findProperty("curseforgeKey")
 

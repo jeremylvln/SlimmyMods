@@ -1,0 +1,12 @@
+{
+  "options.keepmykeys.import.curseforge": "Import key binds from a modpack...",
+  "options.keepmykeys.import.vanilla": "Import key binds from Vanilla...",
+  "options.keepmykeys.importselectprofile.list.empty": "No profile found :(",
+  "options.keepmykeys.importselectprofile.list.file_path": "File path: %s",
+  "options.keepmykeys.importselectprofile.list.ignored": "Ignored",
+  "options.keepmykeys.importselectprofile.list.ignored_profiles": "Ignored profiles",
+  "options.keepmykeys.importselectprofile.list.last_modified_on": "Last modified on: %s",
+  "options.keepmykeys.importselectprofile.list.matchingkeys": "%s usable keys",
+  "options.keepmykeys.importselectprofile.list.profiles_to_apply": "Profiles to apply",
+  "options.keepmykeys.importselectprofile.title": "Import key binds"
+}

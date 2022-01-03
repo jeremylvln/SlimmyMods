@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[39,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/IamBlueSlime/SlimmyMods/issues"
+
+[[mods]]
+modId="ledmc"
+version="${file.jarVersion}"
+displayName="LedMC"
+# updateJSONURL="https://change.me.example.invalid/updates.json"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/ledmc"
+# logoFile="examplemod.png"
+# credits="Thanks for this example mod goes to Java"
+authors="IamBlueSlime"
+description='''
+Let Minecraft control your RGB peripherals!
+'''
+
+[[dependencies.ledmc]]
+    modId="forge"
+    mandatory=true
+    versionRange="[39,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.ledmc]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.1,1.19)"
+    ordering="NONE"
+    side="BOTH"

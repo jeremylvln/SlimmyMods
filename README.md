@@ -7,9 +7,10 @@
 
 ## Contents
 
-| Name       | Description                                                                 | Links                                                                                                         |
-|------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| KeepMyKeys | Allows you to import your key binds from your other Minecraft installations | **[GitHub](./mods/keepmykeys)** - **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/keep-my-keys)** |
+| Name                                | Description                                                   | Links                                                                       |
+|-------------------------------------|---------------------------------------------------------------|-----------------------------------------------------------------------------|
+| **[KeepMyKeys](./mods/keepmykeys)** | Import your key binds from your other Minecraft installations | **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/keep-my-keys)** |
+| **[LedMC](./mods/ledmc)**           | WIP                                                           | **[CurseForge](https://www.curseforge.com/minecraft/mc-mods/ledmc)**        |
 
 ## License
 
