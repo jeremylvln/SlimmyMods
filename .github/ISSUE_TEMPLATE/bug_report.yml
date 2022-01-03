@@ -14,7 +14,7 @@ body:
       label: What mod(s) is concerned by this issue?
       multiple: true
       options:
-        - Keep My Keys
+        - KeepMyKeys
         - LedMC
     validations:
       required: true

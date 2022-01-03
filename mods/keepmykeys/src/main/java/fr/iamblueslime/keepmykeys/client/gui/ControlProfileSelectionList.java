@@ -9,7 +9,6 @@ import fr.iamblueslime.keepmykeys.logic.ControlProfileRegistry;
 import fr.iamblueslime.keepmykeys.logic.KeyBindMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
@@ -17,7 +16,6 @@ import net.minecraft.client.gui.narration.NarratedElementType;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 
@@ -30,6 +28,7 @@ public class ControlProfileSelectionList extends ContainerObjectSelectionList<Co
     public static final TranslatableComponent NO_PROFILE_FOUND_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.list.empty");
     public static final TranslatableComponent PROFILES_TO_APPLY_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.list.profiles_to_apply");
     public static final TranslatableComponent IGNORED_PROFILES_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.list.ignored_profiles");
+    public static final TranslatableComponent PROFILE_IGNORED_MESSAGE = new TranslatableComponent("options.keepmykeys.importselectprofile.list.ignored");
     public static final String MATCHING_KEYS_MESSAGE_KEY = "options.keepmykeys.importselectprofile.list.matchingkeys";
     public static final String PROFILE_LAST_MODIFIED_ON_MESSAGE_KEY = "options.keepmykeys.importselectprofile.list.last_modified_on";
     public static final String PROFILE_FILE_PATH_MESSAGE_KEY = "options.keepmykeys.importselectprofile.list.file_path";
@@ -61,9 +60,9 @@ public class ControlProfileSelectionList extends ContainerObjectSelectionList<Co
 
         this.keyBindMap = ControlProfileRegistry.INSTANCE.createKeyBindMapFromProfiles(this.controlProfiles);
 
-        List<ControlProfile> ignoredControlProfiles = this.keyBindMap.getControlProfilesWithoutMatch();
-        this.ignoredControlProfiles.addAll(ignoredControlProfiles);
-        this.controlProfiles.removeAll(ignoredControlProfiles);
+        List<ControlProfile> profileWithoutMatch = this.keyBindMap.getControlProfilesWithoutMatch();
+        this.ignoredControlProfiles.addAll(profileWithoutMatch);
+        this.controlProfiles.removeAll(profileWithoutMatch);
 
         this.addEntry(new CategoryEntry(PROFILES_TO_APPLY_MESSAGE));
         this.controlProfiles.forEach((controlProfile) -> this.addEntry(new ProfileEntry(
@@ -77,22 +76,6 @@ public class ControlProfileSelectionList extends ContainerObjectSelectionList<Co
         }
 
         this.screen.updateButtonStatus(!this.controlProfiles.isEmpty());
-    }
-
-    private void considerControlProfile(ControlProfile controlProfile) {
-        this.controlProfiles.add(controlProfile);
-        this.ignoredControlProfiles.remove(controlProfile);
-        this.rebuildKeyBindMap();
-    }
-
-    private void ignoreControlProfile(ControlProfile controlProfile) {
-        this.ignoredControlProfiles.add(controlProfile);
-        this.controlProfiles.remove(controlProfile);
-        this.rebuildKeyBindMap();
-    }
-
-    public int getRowWidth() {
-        return super.getRowWidth() + 32;
     }
 
     public KeyBindMap getKeyBindMap() {
@@ -150,60 +133,34 @@ public class ControlProfileSelectionList extends ContainerObjectSelectionList<Co
         private static final ResourceLocation ICON_LOCATION = new ResourceLocation(KeepMyKeys.MODID, "textures/gui/widgets.png");
 
         private final ControlProfile controlProfile;
-        private final ControlProfile.Stats controlProfileStats;
+        private final boolean ignored;
         private final TranslatableComponent matchingKeysMessage;
-        private final Button toggleButton;
 
         public ProfileEntry(ControlProfile controlProfile, ControlProfile.Stats controlProfileStats) {
             this.controlProfile = controlProfile;
-            this.controlProfileStats = controlProfileStats;
-            this.matchingKeysMessage = new TranslatableComponent(MATCHING_KEYS_MESSAGE_KEY,
-                    controlProfileStats != null ? controlProfileStats.matchingKeyBinds() : 0);
-
-            this.toggleButton = new Button(0, 0, 20, 20, TextComponent.EMPTY, (button) -> {
-                if (this.controlProfileStats != null) {
-                    ControlProfileSelectionList.this.ignoreControlProfile(this.controlProfile);
-                } else {
-                    ControlProfileSelectionList.this.considerControlProfile(this.controlProfile);
-                }
-            });
+            this.ignored = controlProfileStats == null;
+            this.matchingKeysMessage = this.ignored ? PROFILE_IGNORED_MESSAGE : new TranslatableComponent(MATCHING_KEYS_MESSAGE_KEY,
+                    controlProfileStats.matchingKeyBinds());
         }
 
         @Override
         public void render(PoseStack pPoseStack, int pIndex, int pTop, int pLeft, int pWidth, int pHeight, int pMouseX, int pMouseY, boolean pIsMouseOver, float pPartialTick) {
-            boolean isIgnored = this.controlProfileStats == null;
-
             ControlProfileSelectionList.this.minecraft.font.draw(pPoseStack, this.controlProfile.title(), (float) (pLeft + 16 + 8), (float) (pTop + 1), 16777215);
-            ControlProfileSelectionList.this.minecraft.font.draw(pPoseStack, this.matchingKeysMessage, (float) (pLeft + 16 + 8), (float) (pTop + 9 + 3), !isIgnored ? 0x99f76e : 8421504);
-
-            this.toggleButton.setMessage(new TextComponent(!isIgnored ? "-" : "+"));
-            this.toggleButton.x = pLeft + pWidth - 20;
-            this.toggleButton.y = pTop;
-            this.toggleButton.render(pPoseStack, pMouseX, pMouseY, pPartialTick);
+            ControlProfileSelectionList.this.minecraft.font.draw(pPoseStack, this.matchingKeysMessage, (float) (pLeft + 16 + 8), (float) (pTop + 9 + 3), !this.ignored ? 0x99f76e : 8421504);
 
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             RenderSystem.setShaderTexture(0, ICON_LOCATION);
             RenderSystem.enableBlend();
-            GuiComponent.blit(pPoseStack, pLeft, pTop, !isIgnored ? 0 : 16, 0, 16, 16, 128, 128);
+            GuiComponent.blit(pPoseStack, pLeft, pTop, !this.ignored ? 0 : 16, 0, 16, 16, 128, 128);
             RenderSystem.disableBlend();
 
-            if (this.toggleButton.isHoveredOrFocused()) {
+            if (pMouseX <= 16) {
                 ControlProfileSelectionList.this.screen.setToolTip(Arrays.asList(
                         new TranslatableComponent(PROFILE_LAST_MODIFIED_ON_MESSAGE_KEY, DATE_FORMAT.format(new Date(this.controlProfile.file().lastModified()))),
                         new TranslatableComponent(PROFILE_FILE_PATH_MESSAGE_KEY, this.controlProfile.file().getAbsolutePath())
                 ));
             }
-        }
-
-        @Override
-        public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
-            return this.toggleButton.mouseClicked(pMouseX, pMouseY, pButton);
-        }
-
-        @Override
-        public boolean mouseReleased(double pMouseX, double pMouseY, int pButton) {
-            return this.toggleButton.mouseReleased(pMouseX, pMouseY, pButton);
         }
 
         @Override
