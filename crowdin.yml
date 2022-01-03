@@ -1,5 +1,7 @@
 project_identifier: slimmymods
 pull_request_title: Update translations from Crowdin [automated]
+pull_request_labels:
+  - 'feat:translations :globe_with_meridians:'
 commit_message: 'feat: update translations %original_file_name% from Crowdin'
 append_commit_message: false
 base_path: .
