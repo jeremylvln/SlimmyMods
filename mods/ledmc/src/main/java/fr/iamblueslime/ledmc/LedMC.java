@@ -7,5 +7,6 @@ public class LedMC {
     public static final String MODID = "ledmc";
 
     public LedMC() {
+
     }
 }

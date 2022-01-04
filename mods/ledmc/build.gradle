@@ -1,0 +1,29 @@
+repositories {
+    ivy {
+        // https://www.logitechg.com/sdk/LED_SDK_9.00.zip
+        artifactPattern("https://www.logitechg.com/sdk/[artifact]_[revision].[ext]")
+        metadataSources {
+            artifact()
+        }
+    }
+
+    flatDir {
+        dir 'logitech-sdk/LED/Lib/JNI/x64'
+    }
+}
+
+configurations {
+    logitechSdk
+}
+
+dependencies {
+    logitechSdk "logitechg:LED_SDK:9.00@zip"
+    implementation ":logiled"
+}
+
+task extractLogitechSdk(type: Copy) {
+    from zipTree(configurations.logitechSdk.singleFile)
+    into "logitech-sdk"
+}
+
+compileJava.dependsOn(extractLogitechSdk)
