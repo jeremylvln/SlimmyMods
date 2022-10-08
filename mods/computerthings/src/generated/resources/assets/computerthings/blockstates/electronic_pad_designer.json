@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "computerthings:block/electronic_pad_designer"
+    },
+    "facing=south": {
+      "model": "computerthings:block/electronic_pad_designer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "computerthings:block/electronic_pad_designer",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "computerthings:block/electronic_pad_designer",
+      "y": 90
+    }
+  }
+}

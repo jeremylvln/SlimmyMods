@@ -17,8 +17,10 @@ configurations {
 }
 
 dependencies {
+    implementationBundled "org.usb4java:usb4java-javax:1.3.0"
+
     logitechSdk "logitechg:LED_SDK:9.00@zip"
-    implementation ":logiled"
+    implementationBundled ":logiled"
 }
 
 task extractLogitechSdk(type: Copy) {

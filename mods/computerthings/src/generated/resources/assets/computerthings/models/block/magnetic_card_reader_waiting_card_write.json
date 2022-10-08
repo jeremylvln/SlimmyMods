@@ -1,0 +1,8 @@
+{
+  "parent": "computerthings:block/magnetic_card_reader",
+  "textures": {
+    "green": "computerthings:color/green_blink",
+    "orange": "computerthings:color/gray",
+    "red": "computerthings:color/gray"
+  }
+}

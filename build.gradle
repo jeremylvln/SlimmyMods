@@ -24,6 +24,10 @@ configure(subprojects.findAll {
 
     java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+    configurations {
+        implementationBundled
+    }
+
     repositories {
         maven { url "https://dvs1.progwml6.com/files/maven" }
         maven { url "https://cursemaven.com" }
@@ -35,11 +39,26 @@ configure(subprojects.findAll {
         compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
         implementation fg.deobf("mezz.jei:jei-${jei_version}")
 
-        implementation fg.deobf("curse.maven:the-one-probe-245211:3550084")
+        implementation fg.deobf("curse.maven:the-one-probe-245211:${top_version}")
     }
 
     minecraft {
         mappings channel: 'parchment', version: parchment_version
+    }
+
+    sourceSets {
+        main {
+            compileClasspath += configurations.implementationBundled
+            runtimeClasspath += configurations.implementationBundled
+        }
+    }
+
+    jar {
+        from {
+            configurations.implementationBundled.collect {
+                it.isDirectory() ? it : zipTree(it)
+            }
+        }
     }
 
     jar.finalizedBy('reobfJar')

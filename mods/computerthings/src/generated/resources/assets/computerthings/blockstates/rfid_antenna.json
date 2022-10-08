@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "computerthings:block/rfid_antenna"
+    }
+  }
+}

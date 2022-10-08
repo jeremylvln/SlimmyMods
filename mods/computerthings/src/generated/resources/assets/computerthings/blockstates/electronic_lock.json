@@ -1,0 +1,61 @@
+{
+  "variants": {
+    "facing=north,state=idle": {
+      "model": "computerthings:block/electronic_lock_idle",
+      "x": 90
+    },
+    "facing=south,state=idle": {
+      "model": "computerthings:block/electronic_lock_idle",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,state=idle": {
+      "model": "computerthings:block/electronic_lock_idle",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,state=idle": {
+      "model": "computerthings:block/electronic_lock_idle",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,state=waiting_input": {
+      "model": "computerthings:block/electronic_lock_waiting_input",
+      "x": 90
+    },
+    "facing=south,state=waiting_input": {
+      "model": "computerthings:block/electronic_lock_waiting_input",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,state=waiting_input": {
+      "model": "computerthings:block/electronic_lock_waiting_input",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,state=waiting_input": {
+      "model": "computerthings:block/electronic_lock_waiting_input",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,state=rejected": {
+      "model": "computerthings:block/electronic_lock_rejected",
+      "x": 90
+    },
+    "facing=south,state=rejected": {
+      "model": "computerthings:block/electronic_lock_rejected",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,state=rejected": {
+      "model": "computerthings:block/electronic_lock_rejected",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,state=rejected": {
+      "model": "computerthings:block/electronic_lock_rejected",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

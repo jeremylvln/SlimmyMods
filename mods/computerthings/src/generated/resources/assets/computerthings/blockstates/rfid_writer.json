@@ -1,0 +1,118 @@
+{
+  "variants": {
+    "facing=north,filled=false,state=idle": {
+      "model": "computerthings:block/rfid_writer_idle",
+      "x": 90
+    },
+    "facing=south,filled=false,state=idle": {
+      "model": "computerthings:block/rfid_writer_idle",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,filled=false,state=idle": {
+      "model": "computerthings:block/rfid_writer_idle",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,filled=false,state=idle": {
+      "model": "computerthings:block/rfid_writer_idle",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,filled=true,state=idle": {
+      "model": "computerthings:block/rfid_writer_idle",
+      "x": 90
+    },
+    "facing=south,filled=true,state=idle": {
+      "model": "computerthings:block/rfid_writer_idle",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,filled=true,state=idle": {
+      "model": "computerthings:block/rfid_writer_idle",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,filled=true,state=idle": {
+      "model": "computerthings:block/rfid_writer_idle",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,filled=false,state=waiting_card": {
+      "model": "computerthings:block/rfid_writer_waiting_card",
+      "x": 90
+    },
+    "facing=south,filled=false,state=waiting_card": {
+      "model": "computerthings:block/rfid_writer_waiting_card",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,filled=false,state=waiting_card": {
+      "model": "computerthings:block/rfid_writer_waiting_card",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,filled=false,state=waiting_card": {
+      "model": "computerthings:block/rfid_writer_waiting_card",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,filled=true,state=waiting_card": {
+      "model": "computerthings:block/rfid_writer_waiting_card",
+      "x": 90
+    },
+    "facing=south,filled=true,state=waiting_card": {
+      "model": "computerthings:block/rfid_writer_waiting_card",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,filled=true,state=waiting_card": {
+      "model": "computerthings:block/rfid_writer_waiting_card",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,filled=true,state=waiting_card": {
+      "model": "computerthings:block/rfid_writer_waiting_card",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,filled=false,state=busy": {
+      "model": "computerthings:block/rfid_writer_busy",
+      "x": 90
+    },
+    "facing=south,filled=false,state=busy": {
+      "model": "computerthings:block/rfid_writer_busy",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,filled=false,state=busy": {
+      "model": "computerthings:block/rfid_writer_busy",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,filled=false,state=busy": {
+      "model": "computerthings:block/rfid_writer_busy",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,filled=true,state=busy": {
+      "model": "computerthings:block/rfid_writer_busy",
+      "x": 90
+    },
+    "facing=south,filled=true,state=busy": {
+      "model": "computerthings:block/rfid_writer_busy",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,filled=true,state=busy": {
+      "model": "computerthings:block/rfid_writer_busy",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,filled=true,state=busy": {
+      "model": "computerthings:block/rfid_writer_busy",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

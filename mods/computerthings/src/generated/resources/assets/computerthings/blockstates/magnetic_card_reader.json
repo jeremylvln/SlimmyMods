@@ -1,0 +1,99 @@
+{
+  "variants": {
+    "facing=north,state=idle": {
+      "model": "computerthings:block/magnetic_card_reader_idle",
+      "x": 90
+    },
+    "facing=south,state=idle": {
+      "model": "computerthings:block/magnetic_card_reader_idle",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,state=idle": {
+      "model": "computerthings:block/magnetic_card_reader_idle",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,state=idle": {
+      "model": "computerthings:block/magnetic_card_reader_idle",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,state=waiting_card": {
+      "model": "computerthings:block/magnetic_card_reader_waiting_card",
+      "x": 90
+    },
+    "facing=south,state=waiting_card": {
+      "model": "computerthings:block/magnetic_card_reader_waiting_card",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,state=waiting_card": {
+      "model": "computerthings:block/magnetic_card_reader_waiting_card",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,state=waiting_card": {
+      "model": "computerthings:block/magnetic_card_reader_waiting_card",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,state=waiting_card_write": {
+      "model": "computerthings:block/magnetic_card_reader_waiting_card_write",
+      "x": 90
+    },
+    "facing=south,state=waiting_card_write": {
+      "model": "computerthings:block/magnetic_card_reader_waiting_card_write",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,state=waiting_card_write": {
+      "model": "computerthings:block/magnetic_card_reader_waiting_card_write",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,state=waiting_card_write": {
+      "model": "computerthings:block/magnetic_card_reader_waiting_card_write",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,state=busy": {
+      "model": "computerthings:block/magnetic_card_reader_busy",
+      "x": 90
+    },
+    "facing=south,state=busy": {
+      "model": "computerthings:block/magnetic_card_reader_busy",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,state=busy": {
+      "model": "computerthings:block/magnetic_card_reader_busy",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,state=busy": {
+      "model": "computerthings:block/magnetic_card_reader_busy",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,state=rejected": {
+      "model": "computerthings:block/magnetic_card_reader_rejected",
+      "x": 90
+    },
+    "facing=south,state=rejected": {
+      "model": "computerthings:block/magnetic_card_reader_rejected",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,state=rejected": {
+      "model": "computerthings:block/magnetic_card_reader_rejected",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,state=rejected": {
+      "model": "computerthings:block/magnetic_card_reader_rejected",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

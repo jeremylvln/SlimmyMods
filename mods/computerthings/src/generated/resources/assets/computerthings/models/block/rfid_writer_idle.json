@@ -1,0 +1,7 @@
+{
+  "parent": "computerthings:block/rfid_writer",
+  "textures": {
+    "green": "computerthings:color/gray",
+    "orange": "computerthings:color/gray"
+  }
+}

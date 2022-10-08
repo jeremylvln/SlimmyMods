@@ -1,2 +1,3 @@
+include ':mods:computerthings'
 include ':mods:keepmykeys'
 include ':mods:ledmc'

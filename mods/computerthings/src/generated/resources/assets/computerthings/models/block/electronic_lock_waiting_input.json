@@ -1,0 +1,7 @@
+{
+  "parent": "computerthings:block/electronic_lock",
+  "textures": {
+    "green": "computerthings:color/green_blink",
+    "red": "computerthings:color/gray"
+  }
+}

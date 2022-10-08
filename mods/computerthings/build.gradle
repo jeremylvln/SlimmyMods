@@ -1,0 +1,17 @@
+repositories {
+    maven {
+        url 'https://squiddev.cc/maven/'
+        content {
+            includeGroup 'org.squiddev'
+        }
+    }
+}
+
+dependencies {
+    compileOnly fg.deobf("org.squiddev:cc-tweaked-1.18.2:${cct_version}:api")
+    runtimeOnly fg.deobf("org.squiddev:cc-tweaked-1.18.2:${cct_version}")
+}
+
+minecraft {
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+}

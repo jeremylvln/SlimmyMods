@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "computerthings:item/rfid_card",
+    "layer1": "computerthings:item/rfid_card_overlay"
+  }
+}
